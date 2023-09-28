@@ -1,9 +1,11 @@
 package ru.javarush.anhimov.quest.controller;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -32,4 +34,16 @@ public class InitServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
+        String playerName = req.getParameterMap().get("player_name")[0];
+
+        if (playerName != null) {
+            HttpSession currentSession = req.getSession();
+            currentSession.setAttribute("playerName", playerName);
+        }
+
+        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+    }
 }
