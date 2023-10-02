@@ -1,11 +1,12 @@
 package ru.javarush.anhimov.quest.entities;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class QuestionImpl implements Question {
+public class QuestionImpl implements Question{
     private Long questionId;
     private String questionText;
     private Map<String, Question> ButtonsAndLinkedQuestions;

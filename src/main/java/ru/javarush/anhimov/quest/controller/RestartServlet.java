@@ -16,7 +16,6 @@ public class RestartServlet extends HttpServlet {
         Integer previousGamesCount = extractGamesCount(currentSession);
         Integer currentGamesCount = previousGamesCount + 1;
         currentSession.setAttribute("gamesCount", currentGamesCount);
-        System.out.println(currentGamesCount);
         resp.sendRedirect("/start");
     }
 

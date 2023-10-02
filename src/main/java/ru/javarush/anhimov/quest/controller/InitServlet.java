@@ -44,7 +44,6 @@ public class InitServlet extends HttpServlet {
         if (playerName != null) {
             HttpSession currentSession = req.getSession();
             currentSession.setAttribute("playerName", playerName);
-            System.out.println(playerName);
         }
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
