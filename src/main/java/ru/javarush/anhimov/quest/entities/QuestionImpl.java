@@ -1,8 +1,8 @@
 package ru.javarush.anhimov.quest.entities;
 
-import jakarta.servlet.http.HttpSession;
-
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class QuestionImpl implements Question {
@@ -11,33 +11,17 @@ public class QuestionImpl implements Question {
     private Map<String, Question> ButtonsAndLinkedQuestions;
     private boolean isWinner;
 
+    public void setWinner(boolean winner) {
+        isWinner = winner;
+    }
+
     public QuestionImpl(Long questionId, String questionText) {
         this.questionId = questionId;
         this.questionText = questionText;
     }
 
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
-    }
-
-    public void setButtonsAndLinkedQuestions(Map<String, Question> buttonsAndLinkedQuestions) {
-        ButtonsAndLinkedQuestions = buttonsAndLinkedQuestions;
-    }
-
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
-    }
-
-    public Long getQuestionId() {
-        return questionId;
-    }
-
     public String getQuestionText() {
         return questionText;
-    }
-
-    public Map<String, Question> addButtonsAndLinkedQuestions() {
-        return ButtonsAndLinkedQuestions;
     }
 
     @Override

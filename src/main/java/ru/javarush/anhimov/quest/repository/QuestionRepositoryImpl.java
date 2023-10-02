@@ -1,23 +1,35 @@
 package ru.javarush.anhimov.quest.repository;
 
+
 import ru.javarush.anhimov.quest.entities.Question;
 import ru.javarush.anhimov.quest.entities.QuestionImpl;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class QuestionRepositoryImpl implements QuestionRepository {
     private static final int START_QUESTION = 0;
 
-    private int winnerQuestion;
+    public QuestionRepositoryImpl() {
+        initializeQuestions();
+    }
 
-    public int getWinnerQuestion() {
-        return winnerQuestion;
+    private void initializeQuestions() {
+        for (int i = 0; i < LIST_OF_BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTIONS.size(); i++) {
+            QUESTIONS.get(i).addButtonsAndLinkedQuestions(LIST_OF_BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTIONS.get(i));
+        }
+    }
+
+    @Override
+    public Question getStartQuestion() {
+        return QUESTIONS.get(Math.toIntExact(START_QUESTION));
     }
 
     public void setWinnerQuestion(int winnerQuestion) {
-        this.winnerQuestion = winnerQuestion;
+        QUESTIONS.get(winnerQuestion).setWinner(true);
     }
-
     public int getQuestionsSize() {
         return QUESTIONS.size();
     }
@@ -53,6 +65,7 @@ public class QuestionRepositoryImpl implements QuestionRepository {
                     "Он решил ..."),
             new QuestionImpl(13L, "Кот Батон сердито боднул шкаф. Стаканы, стоявшие на полках, тихо зазвенели. Батон решил ..."),
             new QuestionImpl(14L, "Кот Батон придвинул стул к столу, чтобы добраться до верхней полки. Кот запрыгнул на скользкую поверхность. Батон грациозно подпрыгнул, будто дикий тигр. У него получилось схватиться за ручку дверцы, открыть ее и уцепиться за полку. Батон повис на ней и залез в шкаф. Там кота ждала большая упаковка корма. Кот Батон засунул морду в пакет и начал жадно есть еду."));
+
     private static final Map<String, Question> BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTION_0 = new LinkedHashMap<>() {{
         put("в гостиную", QUESTIONS.get(1));
         put("в ванную", QUESTIONS.get(2));
@@ -129,7 +142,7 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }};
 
     private static final Map<String, Question> BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTION_14 = new LinkedHashMap<>() {{
-        put("начать с начала", QUESTIONS.get(0));
+        put("начать сначала", QUESTIONS.get(0));
     }};
 
     private static final List<Map<String, Question>> LIST_OF_BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTIONS = Arrays.asList(
@@ -148,36 +161,4 @@ public class QuestionRepositoryImpl implements QuestionRepository {
             BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTION_12,
             BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTION_13,
             BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTION_14);
-
-    public QuestionRepositoryImpl() {
-        initializeQuestions();
-    }
-
-    private void initializeQuestions() {
-        for (int i = 0; i < QUESTIONS.size(); i++) {
-            QUESTIONS.get(i).addButtonsAndLinkedQuestions(LIST_OF_BUTTONS_AND_LINKED_QUESTIONS_FOR_QUESTIONS.get(i));
-        }
-    }
-
-    @Override
-    public List<Question> getAllQuestions() {
-        return QUESTIONS;
-    }
-
-    @Override
-    public Question getQuestionById(Long questionId) {
-        return QUESTIONS.get(Math.toIntExact(questionId - 1));
-    }
-
-    @Override
-    public Question updateQuestionById(Long questionId, String questionText, Map<String, Question> buttonsAndLinkedQuestions) {
-        QUESTIONS.get(Math.toIntExact(questionId - 1)).setQuestionText(questionText);
-        QUESTIONS.get(Math.toIntExact(questionId - 1)).setButtonsAndLinkedQuestions(buttonsAndLinkedQuestions);
-        return null;
-    }
-
-    @Override
-    public Question getStartQuestion() {
-        return QUESTIONS.get(Math.toIntExact(START_QUESTION));
-    }
 }

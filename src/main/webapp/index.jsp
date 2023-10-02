@@ -1,125 +1,22 @@
-<%@ page import="ru.javarush.anhimov.quest.service.QuestionService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
 <head>
-    <script type="text/javascript"
-            src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=HGWJI9ZRT9xTHskoOd-dmUIQbSDy90MNOxMTGgZfL7SONSr5KQp1ch1DxnnNN-oCeM25u8q2Ge1q0eUYI_juV7VRsIKy_RRyVqwWvR_X9BY"
-            charset="UTF-8"></script>
-    <link rel="stylesheet" crossorigin="anonymous"
-          href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9nZXRib290c3RyYXAuY29tL2RvY3MvNS4zL2V4YW1wbGVzL2NvdmVyLw"/>
-    <script src="/docs/5.3/assets/js/color-modes.js"></script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.118.2">
-
+    <title>Quest</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-
-    <title>Quest</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
-        }
-
-        .bd-mode-toggle {
-            z-index: 1500;
-        }
-
-        .bd-mode-toggle .dropdown-menu .active .bi {
-            display: block !important;
-        }
-    </style>
-
-    <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
 
     <script type="text/javascript">
         window.onload = function () {
             if (sessionStorage.getItem('hasCodeRunBefore') === null) {
-                    $('#prologueModal').modal('show');
+                $('#prologueModal').modal('show');
                 sessionStorage.setItem("hasCodeRunBefore", true);
             }
         };
@@ -128,38 +25,39 @@
             $('#prologueModal').modal('hide');
             sessionStorage.setItem("hasCodeRunBefore", true);
         }
-
     </script>
 </head>
 
 <body class="d-flex h-100 text-center text-bg-dark">
-
-<div class="modal fade" id="prologueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="prologueModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-                <button onclick=hideModal() type="button" class="close btn-modal-prologue-close" data-dismiss="modal" aria-label="Close">
+                <button onclick=hideModal() type="button" class="close btn-modal-prologue-close" data-dismiss="modal"
+                        aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body fs-5" id="prologueText" style="color: grey">
-                <p >Приключения кота Батона<p>
-                    Автор Мария Мган<p>
-                    Персонажи: кот Батон<p>
-                    Жанр: сказка<p>
-                    Невероятные приключения кота Батона!<p>
-                    Сможет ли кот Батон найти свою еду?</p>
-                    Введите свое имя в поле ниже...</p>
+                <p>Приключения кота Батона</p>
+                <p>Персонажи: кот Батон</p>
+                <p>Жанр: сказка</p>
+                <p>Невероятные приключения кота Батона!</p>
+                <p>Сможет ли кот Батон найти свою еду?</p>
+                <p>Введите свое имя в поле ниже...</p>
             </div>
             <table>
                 <form method="post">
                     <td class="fs-5 mt-1 mb-1">
-                        <input type="text" id="player_name" name="player_name" class="form-control" aria-describedby="passwordHelpBlock">
+                        <input type="text" id="player_name" name="player_name" class="form-control"
+                               aria-describedby="passwordHelpBlock">
                     </td>
                     <td class="fs-5 mt-1 mb-1">
                         <button onclick="/start" type="submit" class="btn btn-primary" id="btn-save-player-name">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy2-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-floppy2-fill" viewBox="0 0 16 16">
                                 <path d="M12 2h-2v3h2V2Z"/>
                                 <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v13A1.5 1.5 0 0 0 1.5 16h13a1.5 1.5 0 0 0 1.5-1.5V2.914a1.5 1.5 0 0 0-.44-1.06L14.147.439A1.5 1.5 0 0 0 13.086 0H1.5ZM4 6a1 1 0 0 1-1-1V1h10v4a1 1 0 0 1-1 1H4ZM3 9h10a1 1 0 0 1 1 1v5H2v-5a1 1 0 0 1 1-1Z"/>
                             </svg>
@@ -168,7 +66,33 @@
                 </form>
             </table>
             <div class="modal-footer">
-                <button onclick=hideModal() type="button" class="btn btn-secondary btn-modal-prologue-close" data-dismiss="modal">Закрыть</button>
+                <button onclick=hideModal() type="button" class="btn btn-secondary btn-modal-prologue-close"
+                        data-dismiss="modal">Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="statisticModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="color: grey">
+                <h4 class="modal-title">Статистика</h4>
+                <button onclick=$('#statisticModal').modal('hide') type="button" class="close btn-modal-victory-close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body fs-5" style="color: grey">
+                <p>Количество игр: ${gamesCount}</p>
+                <p>Имя игрока: ${playerName}</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick=$('#statisticModal').modal('hide') type="button"
+                        class="btn btn-secondary btn-modal-victory-close" data-dismiss="modal">Закрыть
+                </button>
             </div>
         </div>
     </div>
@@ -193,42 +117,40 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mb-auto">
         <div>
-            <h3 class="float-md-start mb-0">Cover</h3>
             <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
-                <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
-                <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
+                <button onclick=$('#statisticModal').modal('show'); type="button" class="nav-link fw-bold py-1 px-0"
+                        data-dismiss="modal">Статистика
+                </button>
             </nav>
         </div>
     </header>
 
     <main class="px-3">
-        <h1>Cover your page.</h1>
         <p class="lead">${question.getQuestionText()}</p>
         <c:set value="${question.checkWin()}" var="isWinQuestion"/>
-            <c:choose>
-                <c:when test="${isWinQuestion eq false}">
-                    <c:forEach var="i" items="${buttons}">
-                        <p class="lead">
-                        <a href="/logic?button=${buttons.indexOf(i)}" class="btn btn-lg btn-light fw-bold border-white bg-white">${i}</a>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <p class="lead">
-                    <a href="/restart" class="btn btn-lg btn-light fw-bold border-white bg-white">начать с начала</a>
-                </c:otherwise>
-            </c:choose>
+        <c:choose>
+            <c:when test="${question.checkWin() eq false}">
+                <c:forEach var="i" items="${buttons}">
+                    <div class="btn-group me-4" role="group">
+                        <a href="/logic?button=${buttons.indexOf(i)}"
+                           class="btn btn-lg btn-light fw-bold border-white bg-white">${i}</a>
+                    </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <a href="/restart" class="btn btn-lg btn-light fw-bold border-white bg-white">начать с начала</a>
+            </c:otherwise>
+        </c:choose>
     </main>
 
     <footer class="mt-auto text-white-50">
-        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
-                href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+        <p>The original <a href="https://endless-stories.ru/cat-baton-story.html" class="text-white">story</a>, by <a
+                href="https://vk.com/maria_mgan" class="text-white">Maria Mgan</a>.</p>
     </footer>
 </div>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
