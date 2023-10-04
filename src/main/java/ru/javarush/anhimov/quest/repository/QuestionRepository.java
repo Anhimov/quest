@@ -1,10 +1,7 @@
 package ru.javarush.anhimov.quest.repository;
 
 
-import ru.javarush.anhimov.quest.entities.Question;
-
-import java.util.List;
-import java.util.Map;
+import ru.javarush.anhimov.quest.entity.Question;
 
 public interface QuestionRepository {
     Question getStartQuestion();

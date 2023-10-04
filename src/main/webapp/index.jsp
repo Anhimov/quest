@@ -130,9 +130,9 @@
 
     <main class="px-3">
         <p class="lead">${question.getQuestionText()}</p>
-        <c:set value="${question.checkWin()}" var="isWinQuestion"/>
+        <c:set value="${question.isWin()}" var="isWinQuestion"/>
         <c:choose>
-            <c:when test="${question.checkWin() eq false}">
+            <c:when test="${question.isWin() eq false}">
                 <c:forEach var="i" items="${buttons}">
                     <div class="btn-group me-4" role="group">
                         <a href="/logic?button=${buttons.indexOf(i)}"

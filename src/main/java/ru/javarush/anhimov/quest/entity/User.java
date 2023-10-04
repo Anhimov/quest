@@ -1,4 +1,4 @@
-package ru.javarush.anhimov.quest.entities;
+package ru.javarush.anhimov.quest.entity;
 
 public class User {
     private Integer id;

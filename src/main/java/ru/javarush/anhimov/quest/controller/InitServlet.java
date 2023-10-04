@@ -1,12 +1,13 @@
 package ru.javarush.anhimov.quest.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import ru.javarush.anhimov.quest.entities.Question;
+import ru.javarush.anhimov.quest.entity.Question;
 import ru.javarush.anhimov.quest.service.QuestionService;
 
 import java.io.IOException;
@@ -16,7 +17,6 @@ import java.util.List;
 public class InitServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        // Создание новой сессии
         HttpSession currentSession = req.getSession();
 
         QuestionService questionService = new QuestionService();
@@ -24,7 +24,6 @@ public class InitServlet extends HttpServlet {
         questionService.setWinnerQuestion();
         List<String> buttons = question.getButtons();
 
-        //  Сохранение в сессию текущего вопроса квеста
         if (currentSession.isNew()) {
             currentSession.setAttribute("gamesCount", 0);
         }
@@ -32,8 +31,8 @@ public class InitServlet extends HttpServlet {
         currentSession.setAttribute("buttons", buttons);
         currentSession.setAttribute("questionService", questionService);
 
-        // Перенаправление запроса на страницу index.jsp через сервер
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
     @Override
@@ -46,6 +45,7 @@ public class InitServlet extends HttpServlet {
             currentSession.setAttribute("playerName", playerName);
         }
 
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }

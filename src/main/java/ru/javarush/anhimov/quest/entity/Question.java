@@ -1,31 +1,32 @@
-package ru.javarush.anhimov.quest.entities;
+package ru.javarush.anhimov.quest.entity;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class QuestionImpl implements Question{
+public class Question {
     private Long questionId;
     private String questionText;
     private Map<String, Question> ButtonsAndLinkedQuestions;
     private boolean isWinner;
 
-    public void setWinner(boolean winner) {
-        isWinner = winner;
+    public Question() {
     }
 
-    public QuestionImpl(Long questionId, String questionText) {
+    public Question(Long questionId, String questionText) {
         this.questionId = questionId;
         this.questionText = questionText;
+    }
+
+    public void setWinner(boolean winner) {
+        isWinner = winner;
     }
 
     public String getQuestionText() {
         return questionText;
     }
 
-    @Override
     public void addButtonsAndLinkedQuestions(Map<String, Question> ButtonsAndLinkedQuestions) {
         this.ButtonsAndLinkedQuestions = ButtonsAndLinkedQuestions;
     }
@@ -41,8 +42,7 @@ public class QuestionImpl implements Question{
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean checkWin() {
+    public boolean isWin() {
         return isWinner;
     }
 
@@ -50,7 +50,7 @@ public class QuestionImpl implements Question{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        QuestionImpl question = (QuestionImpl) o;
+        Question question = (Question) o;
         return Objects.equals(questionId, question.questionId) && Objects.equals(questionText, question.questionText);
     }
 

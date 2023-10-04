@@ -6,8 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import ru.javarush.anhimov.quest.entities.Question;
-import ru.javarush.anhimov.quest.entities.QuestionImpl;
+import ru.javarush.anhimov.quest.entity.Question;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class LogicServlet extends HttpServlet {
 
     private Question extractQuestion(HttpSession currentSession) {
         Object questionAttribute = currentSession.getAttribute("question");
-        if (QuestionImpl.class != questionAttribute.getClass()) {
+        if (Question.class != questionAttribute.getClass()) {
             currentSession.invalidate();
             throw new RuntimeException("Session is broken, try one more time");
         }
